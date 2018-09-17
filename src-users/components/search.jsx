@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-import Pubsub from 'pubsub-js'
+import Proptypes from 'prop-types'
 
 export default class Search extends Component {
 
@@ -17,9 +17,12 @@ export default class Search extends Component {
     handleClick = () => {
         const {flushName} = this.props
         const {searchName} = this.state
-        Pubsub.publish('sendName',searchName.trim())
+        flushName(searchName)
     }
 
+    static Proptypes = () => {
+        flushName : Proptypes.func.isRequire
+    }
 
 
     render() {
